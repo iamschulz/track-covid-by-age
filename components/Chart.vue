@@ -1,14 +1,14 @@
 <template>
   <div>
+    <noscript>
+      Diese Webseite benötigt JavaScript, um ein Diagramm anzuzeigen.
+    </noscript>
     <link
       rel="stylesheet"
       href="https://unpkg.com/charts.css/dist/charts.min.css"
     />
     <table
-      :class="
-        'covid-chart charts-css area show-4-secondary-axes show-heading' +
-        (data.length <= 30 ? ' show-labels' : '')
-      "
+      class="covid-chart charts-css area show-4-secondary-axes show-heading show-labels"
     >
       <caption>
         Neuinfektionen nach Datum<br />
@@ -19,7 +19,17 @@
       </caption>
       <tbody>
         <tr v-for="(datapoint, index) in data" :key="index">
-          <th scope="row">{{ datapoint.date }}</th>
+          <th scope="row">
+            <span
+              data-type="day"
+              :class="
+                data.length > 30 && data.length < 356 && index % 10 !== 0
+                  ? ' visually-hidden'
+                  : ''
+              "
+              >{{ datapoint.date }}</span
+            >
+          </th>
           <td :style="getChartStyle(datapoint, index)">
             <span class="tooltip label-y">
               {{ datapoint.date }}<br />{{ datapoint.cases }}

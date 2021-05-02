@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>Covid-19 Neuinfektionen nach Altersgruppe und Bundesland</h1>
     <div class="controls">
       <p>
         <label for="state">Bundesland</label>
@@ -122,7 +123,8 @@
       </p>
       <p>
         Tech: <a href="https://nuxtjs.org/">Nuxt</a>,
-        <a href="https://chartscss.org/">Charts.css</a>
+        <a href="https://chartscss.org/">Charts.css</a>,
+        <a href="https://netlify.com">Netlify</a>
       </p>
     </footer>
   </div>
@@ -195,8 +197,12 @@ export default defineComponent({
   gap: 3rem;
 }
 
+h1 {
+  margin: 1rem 1rem 0;
+}
+
 .controls {
-  padding: 1rem;
+  margin: 0 1rem;
 
   > * + * {
     margin-top: 1rem;

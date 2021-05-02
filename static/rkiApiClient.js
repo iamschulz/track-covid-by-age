@@ -1,16 +1,17 @@
 const getData = (stateId, cohort, minDate, maxDate) => {
+  const stateModifier = `%20AND%20IdBundesland%20%3D%20${stateId}`
   const dateModifier = `Meldedatum%20%3E%3D%20TIMESTAMP%20'${minDate}%2000%3A00%3A00'%20AND%20Meldedatum%20%3C%3D%20TIMESTAMP%20'${maxDate}%2000%3A00%3A00'`
-  const cohortsModifier = `Altersgruppe%20%3D%20'${cohort}'`
+  const cohortsModifier = `%20AND%20Altersgruppe%20%3D%20'${cohort}'`
   const url = `
 	https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?
 		where=
-			IdBundesland%20%3D%20${stateId}%20AND%20
-			${dateModifier}%20AND%20
+			${dateModifier}
+			${stateModifier}
 			${cohortsModifier}&
 		objectIds=&
 		time=&
 		resultType=standard&
-		outFields=AnzahlFall,MeldeDatum,IdBundesland&
+		outFields=AnzahlFall,MeldeDatum,IdBundesland,Altersgruppe&
 		returnIdsOnly=false&
 		returnUniqueIdsOnly=false&
 		returnCountOnly=false&
