@@ -88,6 +88,8 @@ export default defineComponent({
 .covid-chart {
   height: 50vw;
   width: 90vw;
+  min-width: 31.25rem;
+  min-height: 18.75rem;
 }
 
 .tooltip {
